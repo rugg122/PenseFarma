@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Formulário</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-image">
+            <img src="assets/img//pensinha.png" alt="">
+        </div>
+        <div class="form">
+            <form action="#">
+                <div class="form-header">
+                    <div class="title">
+                        <h1>Pense Saúde</h1>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="firstname">Primeiro Nome</label>
+                        <input id="firstname" type="text" name="firstname" placeholder="Digite seu primeiro nome" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="lastname">Sobrenome</label>
+                        <input id="lastname" type="text" name="lastname" placeholder="Digite seu sobrenome" required>
+                    </div>
+                    <div class="input-box">
+                        <label for="email">E-mail</label>
+                        <input id="email" type="email" name="email" placeholder="Digite seu e-mail" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="number">Celular</label>
+                        <input id="number" type="tel" name="number" placeholder="(XX) XXXXX-XXXX" required>
+                    </div>
+                    
+                    <script>
+                        const phoneInput = document.getElementById('number'); // Corrigido para 'number'
+                    
+                        phoneInput.addEventListener('input', function() {
+                            // Remove todos os caracteres que não são dígitos
+                            let value = this.value.replace(/\D/g, '');
+                    
+                            // Aplica a máscara
+                            if (value.length > 10) {
+                                this.value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3'); // (XX) XXXXX-XXXX
+                            } else if (value.length > 6) {
+                                this.value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3'); // (XX) XXXX-XXXX
+                            } else if (value.length > 2) {
+                                this.value = value.replace(/(\d{2})(\d{0,5})/, '($1) $2'); // (XX) X
+                            } else {
+                                this.value = value; // Apenas os dois primeiros dígitos
+                            }
+                        });
+                    </script>
+                    
+                    <div class="input-box">
+                        <label for="cpf">CPF</label>
+                        <input id="cpf" type="text" name="cpf" placeholder="XXX.XXX.XXX-XX" required>
+                    </div>
+                    
+                    <script>
+                        const cpfInput = document.getElementById('cpf');
+                    
+                        cpfInput.addEventListener('input', function() {
+                            // Remove todos os caracteres que não são dígitos
+                            let value = this.value.replace(/\D/g, '');
+                    
+                            // Aplica a máscara
+                            if (value.length > 11) {
+                                value = value.slice(0, 11); // Limita a 11 dígitos
+                            }
+                            if (value.length > 9) {
+                                this.value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{1})/, '$1.$2.$3-$4'); // XXX.XXX.XXX-XX
+                            } else if (value.length > 6) {
+                                this.value = value.replace(/(\d{3})(\d{3})(\d{1})/, '$1.$2.$3'); // XXX.XXX.XXX
+                            } else if (value.length > 3) {
+                                this.value = value.replace(/(\d{3})(\d{1})/, '$1.$2'); // XXX.XXX
+                            } else {
+                                this.value = value; // Apenas os dígitos digitados
+                            }
+                        });
+                    </script>
+                    
+                    <div class="input-box">
+                        <label for="nascimento">Data de Nascimento</label>
+                        <input id="nascimento" type="text" name="nascimento" placeholder="DD/MM/AAAA" required>
+                    </div>
+                    
+                    <script>
+                        const nascimentoInput = document.getElementById('nascimento');
+                    
+                        nascimentoInput.addEventListener('input', function() {
+                            // Remove todos os caracteres que não são dígitos
+                            let value = this.value.replace(/\D/g, '');
+                    
+                            // Aplica a máscara
+                            if (value.length > 8) {
+                                value = value.slice(0, 8); // Limita a 8 dígitos
+                            }
+                            if (value.length >= 6) {
+                                this.value = value.replace(/(\d{2})(\d{2})(\d{4})/, '$1/$2/$3'); // DD/MM/AAAA
+                            } else if (value.length >= 4) {
+                                this.value = value.replace(/(\d{2})(\d{2})/, '$1/$2'); // DD/MM
+                            } else {
+                                this.value = value; // Apenas os dígitos digitados
+                            }
+                        });
+                    </script>
+                    
+                </div>
+
+                <div class="gender-inputs">
+                    <div class="gender-title">
+                        <h6>Gênero</h6>
+                    </div>
+
+                    <div class="gender-group">
+                        <div class="gender-input">
+                            <input id="female" type="radio" name="gender">
+                            <label for="female">Feminino</label>
+                        </div>
+
+                        <div class="gender-input">
+                            <input id="male" type="radio" name="gender">
+                            <label for="male">Masculino</label>
+                        </div>
+
+                        <div class="gender-input">
+                            <input id="none" type="radio" name="gender">
+                            <label for="none">Outros</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-box">
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="showOptionsCheckbox">
+                        <label for="showOptionsCheckbox">Cliente Conveniado?</label>
+                    </div>
+                
+                    <div class="options-box" id="optionsBox">
+                        <select id="optionsSelect" name="options">
+                            <option value="" disabled selected>Selecione uma opção</option>
+                            <option value="option1">Pense Farma</option>
+                            <option value="option2">Golden Park</option>
+                            <option value="option3">Transkuba</option>
+                        </select>
+                    </div>
+                </div>
+                <script>
+                    const checkbox = document.getElementById('showOptionsCheckbox');
+                    const optionsBox = document.getElementById('optionsBox');
+                
+                    checkbox.addEventListener('change', function() {
+                        if (this.checked) {
+                            optionsBox.style.display = 'block'; // Mostra a caixa de opções
+                        } else {
+                            optionsBox.style.display = 'none'; // Esconde a caixa de opções
+                        }
+                    });
+                </script>
+
+                <div class="continue-button">
+                    <button><a href="#">Cadastrar</a> </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
